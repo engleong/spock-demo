@@ -20,21 +20,26 @@ public class CalculationService {
             throw new IllegalArgumentException("Invalid value " + negativeValue.get());
         }
 
-        return values.stream().mapToInt(Integer::valueOf).sum();
+        return sum(values);
     }
 
     public int calculate(String id, List<Integer> values) {
         int dataServiceValue = externalDataService.getValue(id);
-        return values.stream().mapToInt(Integer::valueOf).sum() + dataServiceValue;
+        return sum(values) + dataServiceValue;
     }
 
     public int calculateWithAudit(String id, List<Integer> values) {
-        int result = values.stream().mapToInt(Integer::valueOf).sum();
+        int result = sum(values);
         auditService.audit(id, result, System.currentTimeMillis());
         return result;
     }
 
     public boolean exceedLimit(List<Integer> values) {
-        return calculate(values) > limit;
+        return sum(values) > limit;
     }
+
+    private int sum(List<Integer> values) {
+        return values.stream().mapToInt(Integer::valueOf).sum();
+    }
+
 }
