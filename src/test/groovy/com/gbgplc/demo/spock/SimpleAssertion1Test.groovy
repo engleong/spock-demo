@@ -12,7 +12,7 @@ class SimpleAssertion1Test extends Specification {
         int result = calculationService.calculate([3, 2, 5])
 
         then:
-        result == 9
+        result == 10
     }
 
 }
