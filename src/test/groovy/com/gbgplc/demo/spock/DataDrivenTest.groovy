@@ -7,7 +7,7 @@ import spock.lang.Unroll
 class DataDrivenTest extends Specification {
 
     @Unroll
-    def "check whether exceed limit #limit for #valueList should be #isLimitExceeded"() {
+    def "check whether exceed limit #inputLimit for #inputValues should be #isLimitExceeded"() {
 
         given:
         CalculationService calculationService = new CalculationService();
